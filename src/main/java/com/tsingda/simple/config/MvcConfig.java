@@ -19,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
@@ -34,6 +35,7 @@ import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConve
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.OptionalValidatorFactoryBean;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -106,7 +108,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         stringMessageConverter.setSupportedMediaTypes(types);
         converters.add(stringMessageConverter);
         converters.add(mappingJackson2HttpMessageConverter());
-        converters.add(mappingJackson2XmlHttpMessageConverter());
+//        converters.add(mappingJackson2XmlHttpMessageConverter());
     }
 
     @Bean
@@ -170,6 +172,14 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         FileUploadInterceptor fileUploadInterceptor = new FileUploadInterceptor();
         fileUploadInterceptor.setMaxSize(10 * 1024 * 1024);
         registry.addInterceptor(fileUploadInterceptor);
+    }
+    
+    
+    @Override
+    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        super.addArgumentResolvers(argumentResolvers);
+        PageableHandlerMethodArgumentResolver methodArgumentResolver = new PageableHandlerMethodArgumentResolver();
+        argumentResolvers.add(methodArgumentResolver);
     }
 
 }
