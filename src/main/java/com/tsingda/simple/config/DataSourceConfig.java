@@ -79,7 +79,7 @@ public class DataSourceConfig {
      * @return redis connection factory
      */
     @Bean
-    public RedisConnectionFactory jedisConnectionFactory() {
+    public RedisConnectionFactory connectionFactory() {
         JedisConnectionFactory jedisConnectionFactory = new JedisConnectionFactory();
         jedisConnectionFactory.setUsePool(true);
         jedisConnectionFactory.setHostName(redisHost);
@@ -123,7 +123,9 @@ public class DataSourceConfig {
     
     @Bean
     public StringRedisTemplate stringRedisTemplate(){
-        return new StringRedisTemplate(jedisConnectionFactory());
+        StringRedisTemplate template = new StringRedisTemplate(connectionFactory());
+        template.setEnableTransactionSupport(true);
+        return template;
     }
 
     @Bean
