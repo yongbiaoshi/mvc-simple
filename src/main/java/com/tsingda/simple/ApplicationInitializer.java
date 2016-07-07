@@ -42,6 +42,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         webContext.register(AppConfig.class, MvcConfig.class);
 
         DispatcherServlet dispatcherServlet = new DispatcherServlet(webContext);
+        //如果没有找到handler的话，抛出异常（也就是404异常抛出）
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
 
         Dynamic dispatcherDynamic = servletContext.addServlet("dispatcher", dispatcherServlet);
