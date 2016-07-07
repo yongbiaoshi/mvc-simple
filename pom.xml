@@ -13,7 +13,7 @@
     <org.springframework.security-version>4.0.3.RELEASE</org.springframework.security-version>
     <org.aspectj-version>1.8.8</org.aspectj-version>
     <org.slf4j-version>1.7.12</org.slf4j-version>
-    <release-train>Gosling-SR4</release-train>
+    <release-train>Hopper-SR2</release-train>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -118,6 +118,10 @@
     </dependency>
 
     <!-- AspectJ -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
