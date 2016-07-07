@@ -46,6 +46,8 @@ public class DataSourceConfig {
     private int redisPort;
     @Value("${redis.password}")
     private String redisPassword;
+    @Value("${redis.database}")
+    private int redisDatabase;
     @Value("${redis.maxWaitMillis}")
     private long redisMaxWaitMillis;
 
@@ -90,7 +92,7 @@ public class DataSourceConfig {
         poolConfig.setMaxTotal(100);
         jedisConnectionFactory.setPoolConfig(poolConfig);
         //生产环境去掉，测试只用一个DB就
-        jedisConnectionFactory.setDatabase(1);
+        jedisConnectionFactory.setDatabase(redisDatabase);
         return jedisConnectionFactory;
     }
 
