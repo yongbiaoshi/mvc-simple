@@ -3,7 +3,10 @@ package com.tsingda.simple.util;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -19,7 +22,6 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.type.ArrayType;
 import com.fasterxml.jackson.databind.type.CollectionType;
 import com.fasterxml.jackson.databind.type.MapType;
@@ -46,9 +48,9 @@ public class JsonUtil {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.configure(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL, false);
         
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(String.class, new StringSerializer());
-        objectMapper.registerModule(module);
+        // SimpleModule module = new SimpleModule();
+        // module.addSerializer(String.class, new StringSerializer());
+        // objectMapper.registerModule(module);
         
         typeFactory = objectMapper.getTypeFactory();
         
@@ -94,9 +96,26 @@ public class JsonUtil {
         return typeFactory.constructMapType(mapClass, keyClass, valueClass);
     }
     
-    public static void main(String[] args) throws JsonProcessingException {
-        String s = JsonUtil.stringify("abcd");
-        System.out.println(s);
-        System.out.print("abcd");
+    public static void main(String[] args) throws IOException {
+
+        
+        List<Map<String, Object>> list = new ArrayList<Map<String,Object>>();
+        Map<String, Object> m1 = new HashMap<String, Object>();
+        m1.put("name", "n1");
+        m1.put("age", 12);
+        Map<String, Object> m2 = new HashMap<String, Object>();
+        m2.put("name", "n1");
+        m2.put("age", 12);
+        list.add(m1);
+        list.add(m2);
+        
+        JavaType type = constructCollectionType(List.class, Map.class);
+        String ss = "[{\"name\":\"n1\",\"age\":12},{\"name\":\"n1\",\"age\":12}]";
+        List<Map<String, Object>> l = parse(ss, type);
+        for (Map<String, Object> map : l) {
+            System.out.println(map.get("name"));
+            System.out.println(map.get("age"));
+        }
+        
     }
 }
