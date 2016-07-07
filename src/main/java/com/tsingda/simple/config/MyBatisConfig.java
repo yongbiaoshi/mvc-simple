@@ -17,10 +17,11 @@ import org.springframework.web.context.support.ServletContextResourcePatternReso
 
 /**
  * MyBatis相关配置
- * @ClassName: MyBatisConfig 
+ * 
+ * @ClassName: MyBatisConfig
  * @Description: 配置MyBatis
  * @author Administrator
- * @date 2016年2月15日 下午1:53:33 
+ * @date 2016年2月15日 下午1:53:33
  *
  */
 @Configuration
@@ -56,7 +57,7 @@ public class MyBatisConfig {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer scanner = new MapperScannerConfigurer();
         scanner.setBasePackage(MAPPER_BASE_PACKAGE);
-        scanner.setSqlSessionFactoryBeanName(SQL_SESSION_FACTORY_BEAN_NAME);
+        // scanner.setSqlSessionFactoryBeanName(SQL_SESSION_FACTORY_BEAN_NAME);
         return scanner;
     }
 

@@ -31,7 +31,7 @@ import com.tsingda.simple.config.interceptor.FileUploadInterceptor;
 
 @Configuration
 @EnableTransactionManagement
-@Import(value = { DataSourceConfig.class, MyBatisConfig.class, MongoDBConfig.class })
+@Import(value = { DataSourceConfig.class, MyBatisConfig.class, MongoDBConfig.class, RedisConfig.class })
 @PropertySource(value = { "classpath:${spring.profiles.active:dev}/app.properties" })
 public class AppConfig {
 
