@@ -158,10 +158,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         messageSource.setDefaultEncoding(DEFAULT_CHARSET_VALUE);
         messageSource.setCacheSeconds(VALIDATION_MESSAGES_CACHE_SECONS);
 
-        String userValidationMessages = "UserValidationMessages";
-        String orderValidationMessages = "OrderValidationMessages";
         String commonValidationMessages = "CommonValidationMessages";
-        messageSource.setBasenames(userValidationMessages, orderValidationMessages, commonValidationMessages);
+        messageSource.setBasenames(commonValidationMessages);
         validator.setValidationMessageSource(messageSource);
         return validator;
     }
