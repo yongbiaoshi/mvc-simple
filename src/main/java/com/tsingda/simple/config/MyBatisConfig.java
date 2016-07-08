@@ -27,11 +27,10 @@ import org.springframework.web.context.support.ServletContextResourcePatternReso
 @Configuration
 public class MyBatisConfig {
 
-    private static final String MAPPER_BASE_PACKAGE = "com.tsingda.simple.dao.mapper";
+    private String mapperBasePackage = "com.tsingda.simple.dao.mapper";
+    private String sqlXmlFilePath = "classpath*:com/tsingda/simple/sql/*.xml";
 
-    private static final String SQL_SESSION_FACTORY_BEAN_NAME = "sqlSessionFactory";
-
-    @Bean(name = SQL_SESSION_FACTORY_BEAN_NAME)
+    @Bean
     public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource, ServletContext servletContext)
             throws IOException {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -42,7 +41,7 @@ public class MyBatisConfig {
 
         ServletContextResourcePatternResolver resourceResolver = new ServletContextResourcePatternResolver(
                 servletContext);
-        Resource[] mapperLocations = resourceResolver.getResources("classpath*:com/tsingda/simple/sql/*.xml");
+        Resource[] mapperLocations = resourceResolver.getResources(sqlXmlFilePath);
         sqlSessionFactoryBean.setMapperLocations(mapperLocations);
 
         return sqlSessionFactoryBean;
@@ -56,7 +55,7 @@ public class MyBatisConfig {
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer scanner = new MapperScannerConfigurer();
-        scanner.setBasePackage(MAPPER_BASE_PACKAGE);
+        scanner.setBasePackage(mapperBasePackage);
         // scanner.setSqlSessionFactoryBeanName(SQL_SESSION_FACTORY_BEAN_NAME);
         return scanner;
     }

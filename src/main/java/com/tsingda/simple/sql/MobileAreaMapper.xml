@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tsingda.simple.dao.mapper.MobileAreaMapper" >
+  <resultMap id="BaseResultMap" type="com.tsingda.simple.model.MobileArea" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="sheng" property="sheng" jdbcType="VARCHAR" />
+    <result column="shi" property="shi" jdbcType="VARCHAR" />
+    <result column="yunyingshang" property="yunyingshang" jdbcType="VARCHAR" />
+    <result column="code1" property="code1" jdbcType="VARCHAR" />
+    <result column="code2" property="code2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mobile, sheng, shi, yunyingshang, code1, code2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mobile
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mobile
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tsingda.simple.model.MobileArea" >
+    insert into mobile (id, mobile, sheng, 
+      shi, yunyingshang, code1, 
+      code2)
+    values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{sheng,jdbcType=VARCHAR}, 
+      #{shi,jdbcType=VARCHAR}, #{yunyingshang,jdbcType=VARCHAR}, #{code1,jdbcType=VARCHAR}, 
+      #{code2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tsingda.simple.model.MobileArea" >
+    insert into mobile
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="sheng != null" >
+        sheng,
+      </if>
+      <if test="shi != null" >
+        shi,
+      </if>
+      <if test="yunyingshang != null" >
+        yunyingshang,
+      </if>
+      <if test="code1 != null" >
+        code1,
+      </if>
+      <if test="code2 != null" >
+        code2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="sheng != null" >
+        #{sheng,jdbcType=VARCHAR},
+      </if>
+      <if test="shi != null" >
+        #{shi,jdbcType=VARCHAR},
+      </if>
+      <if test="yunyingshang != null" >
+        #{yunyingshang,jdbcType=VARCHAR},
+      </if>
+      <if test="code1 != null" >
+        #{code1,jdbcType=VARCHAR},
+      </if>
+      <if test="code2 != null" >
+        #{code2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tsingda.simple.model.MobileArea" >
+    update mobile
+    <set >
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="sheng != null" >
+        sheng = #{sheng,jdbcType=VARCHAR},
+      </if>
+      <if test="shi != null" >
+        shi = #{shi,jdbcType=VARCHAR},
+      </if>
+      <if test="yunyingshang != null" >
+        yunyingshang = #{yunyingshang,jdbcType=VARCHAR},
+      </if>
+      <if test="code1 != null" >
+        code1 = #{code1,jdbcType=VARCHAR},
+      </if>
+      <if test="code2 != null" >
+        code2 = #{code2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tsingda.simple.model.MobileArea" >
+    update mobile
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      sheng = #{sheng,jdbcType=VARCHAR},
+      shi = #{shi,jdbcType=VARCHAR},
+      yunyingshang = #{yunyingshang,jdbcType=VARCHAR},
+      code1 = #{code1,jdbcType=VARCHAR},
+      code2 = #{code2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

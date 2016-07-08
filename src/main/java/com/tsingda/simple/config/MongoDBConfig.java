@@ -4,6 +4,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -22,12 +25,31 @@ import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 
 @Configuration
-@EnableMongoRepositories(basePackages = "com.tsingda.simple.dao.repository", repositoryImplementationPostfix = "Impl", queryLookupStrategy = QueryLookupStrategy.Key.CREATE_IF_NOT_FOUND)
+@EnableMongoRepositories(basePackages = "{app.base.package}.dao.repository", repositoryImplementationPostfix = "Impl", queryLookupStrategy = QueryLookupStrategy.Key.CREATE_IF_NOT_FOUND)
 public class MongoDBConfig extends AbstractMongoConfiguration {
+
+    @Value("${mongo.database}")
+    private String database;
+
+    @Value("${mongo.host}")
+    private String host;
+
+    @Value("${mongo.port}")
+    private int port;
+
+    @Value("${app.base.package}")
+    private String appBasePackage;
+
+    private String basePackage = "model.mongo";
+
+    @PostConstruct
+    public void init() {
+        this.basePackage = this.appBasePackage + "." + basePackage;
+    }
 
     @Bean
     public MongoClient mongoClient() throws UnknownHostException {
-        return new MongoClient("192.168.2.124", 27017);
+        return new MongoClient(host, port);
     }
 
     @Bean
@@ -47,15 +69,14 @@ public class MongoDBConfig extends AbstractMongoConfiguration {
 
     @Override
     public String getDatabaseName() {
-        return "payment";
+        return this.database;
     }
 
     @Override
     public String getMappingBasePackage() {
-        return "com.tsingda.smd.model.mongo";
-    }
 
-    // the following are optional
+        return basePackage;
+    }
 
     @Bean
     @Override

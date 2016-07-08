@@ -8,16 +8,16 @@
       <property name="suppressDate" value="true" />
       <property name="suppressAllComments" value="true" />
     </commentGenerator>
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.123:3306/wyx-dev"
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://192.168.2.123:3306/am20160316"
       userId="root" password="root" />
-    <javaModelGenerator targetPackage="com.tsingda.smd.model" targetProject="SpringMvcDemo">
+    <javaModelGenerator targetPackage="com.tsingda.simple.model" targetProject="mvc-simple">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
-    <sqlMapGenerator targetPackage="com.tsingda.smd.sql" targetProject="SpringMvcDemo">
+    <sqlMapGenerator targetPackage="com.tsingda.simple.sql" targetProject="mvc-simple">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
-    <javaClientGenerator targetPackage="com.tsingda.smd.dao.mapper" targetProject="SpringMvcDemo" type="XMLMAPPER">
+    <javaClientGenerator targetPackage="com.tsingda.simple.dao.mapper" targetProject="mvc-simple" type="XMLMAPPER">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
     <!--生成对应表及类名 -->
@@ -27,8 +27,16 @@
 <!--     <table tableName="account" domainObjectName="Account" enableCountByExample="false" enableUpdateByExample="false"
       enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
  -->
-  
-  <table tableName="mst_area" domainObjectName="Area" enableCountByExample="false" enableUpdateByExample="false"
-      enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+ <!--  <table tableName="mall_attr_group" domainObjectName="MallAttrGroup" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_attr" domainObjectName="MallAttr" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity_source" domainObjectName="MallActivitySource" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity_unit" domainObjectName="MallActivityUnit" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity_category" domainObjectName="MallActivityCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity_group" domainObjectName="MallActivityGroup" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity" domainObjectName="MallActivity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_attr_group_pic_bank" domainObjectName="MallAttrGroupPicBank" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity_order" domainObjectName="MallActivityOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+  <table tableName="mall_activity_enroll" domainObjectName="MallActivityEnroll" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table> -->
+  <table tableName="mobile" domainObjectName="MobileArea" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
   </context>
 </generatorConfiguration>

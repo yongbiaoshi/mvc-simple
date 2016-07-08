@@ -2,6 +2,8 @@ package com.tsingda.simple.config;
 
 import java.nio.charset.Charset;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +31,10 @@ public class RedisConfig {
     private int redisDatabase;
     @Value("${redis.maxWaitMillis}")
     private long redisMaxWaitMillis;
+    
+    @PostConstruct
+    public void init(){
+    }
 
     /**
      * redis connection factory config

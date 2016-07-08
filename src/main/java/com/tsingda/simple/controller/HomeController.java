@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.tsingda.simple.dao.mapper.MobileAreaMapper;
+import com.tsingda.simple.model.MobileArea;
 
 /**
  * Handles requests for the application home page.
@@ -20,6 +25,9 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+    @Resource
+    private MobileAreaMapper mobileAreaMapper;
+    
     /**
      * Simply selects the home view to render by returning its name.
      */
@@ -40,6 +48,11 @@ public class HomeController {
     @RequestMapping(value = "str", method = RequestMethod.GET)
     public @ResponseBody String str(String data) {
         return data;
+    }
+    
+    @RequestMapping(value = "mobile", method = RequestMethod.GET)
+    public @ResponseBody MobileArea str() {
+        return mobileAreaMapper.selectByPrimaryKey(1);
     }
 
 }

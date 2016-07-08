@@ -52,7 +52,7 @@ import com.tsingda.simple.util.XmlUtil;
 @EnableWebMvc
 @EnableAspectJAutoProxy
 @EnableSpringDataWebSupport
-@ComponentScan(basePackages = "com.tsingda.simple", excludeFilters = { @Filter(type = FilterType.REGEX, pattern = "com.tsingda.simple.config.*") })
+@ComponentScan(basePackages = "${app.base.package}", excludeFilters = { @Filter(type = FilterType.REGEX, pattern = "com.tsingda.simple.config.*") })
 public class MvcConfig extends WebMvcConfigurerAdapter {
 
     private final static Logger logger = LoggerFactory.getLogger(MvcConfig.class);
